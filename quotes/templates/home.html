@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load humanize %}
+
 {% block content %}
 
 
@@ -12,12 +15,12 @@
 	{% else %}
 
 		<h1>{{ api.companyName }}</h1><br/>
-		Price: ${{ api.latestPrice }}<br/>
-		Previous Close: ${{ api.previousClose }}<br/>
-		Market Cap: ${{	api.marketCap }}<br/>
-		YTD Change: {{ api.ytdChange }}<br/>
-		52Wk High: {{ api.week52High }}<br/>
-		52Wk Low: {{ api.week52Low }}<br/>
+		Price: ${{ api.latestPrice | intcomma }}<br/>
+		Previous Close: ${{ api.previousClose | intcomma }}<br/>
+		Market Cap: ${{	api.marketCap | intcomma }}<br/>
+		YTD Change: {{ api.ytdChange }}%<br/>
+		52Wk High: {{ api.week52High | intcomma }}<br/>
+		52Wk Low: {{ api.week52Low | intcomma }}<br/>
 
 
 
