@@ -4,13 +4,13 @@
 {% block content %}
 
 
-<h1>Add Stock...</h1>
+<h1>Stock Portfolio ...</h1>
 <br/>
 
 <form  action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">
         {% csrf_token %}
       <input class="form-control mr-sm-2" type="search" placeholder="Add to Portfolio" aria-label="Search" name="ticker">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Stock</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Stock Portfolio </button>
     </form>
 
 <br/><br/>
@@ -29,40 +29,37 @@
   </thead>
   <tbody>
 
-{% if ticker %}   
-	
+ {% if ticker %}
 
-		
-			{% for list_item in output %}
-				<tr>
-					<th scope="row">{{list_item.companyName }}</th>
-					<td>${{ list_item.latestPrice | intcomma }}</td>
-					<td>${{ list_item.previousClose | intcomma }}</td>
-					<td>${{ list_item.marketCap | intcomma }}</td>
-					<td>{{ list_item.ytdChange }} </td>
-					<td>${{ list_item.week52High | intcomma }}</td>
-					<td>${{ list_item.week52Low | intcomma }}</td>		
-				<tr>	
-			{% endfor %}
+	{% if api == "Error..." %}
+		    There was a problem with your ticker symbol. Please try again...
+
+
+	{% else %}
+
+        {% for list_item in output %}
+            <tr>
+                <th scope="row">{{list_item.companyName }}</th>
+                <td>${{ list_item.latestPrice | intcomma }}</td>
+                <td>${{ list_item.previousClose | intcomma }}</td>
+                <td>${{ list_item.marketCap | intcomma }}</td>
+                <td>{{ list_item.ytdChange}}  </td>
+                <td>${{ list_item.week52High | intcomma }}</td>
+                <td>${{ list_item.week52Low | intcomma }}</td>
+            <tr>
+        {% endfor %}
 			
 			
 		</tr>
-
-	
-
-
-   
   </tbody>
 </table>
 {% endif %}
-
-
 
 <br/><br/>
 
 {% for item in ticker %}
 		<a href="{% url 'delete' item.id %}" class="btn btn-secondary">Delete {{ item }}</a>  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 	{% endfor %}
-
+    {% endif %}
 
 {% endblock %}
