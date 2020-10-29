@@ -15,10 +15,10 @@ def home(request):
 			api = json.loads(api_request.content)
 		except Exception as e:
 			api = "Error..."
-		return render(request, 'home.html', {'api': api})
+		return render(request, 'Stock_Lookup.html', {'api': api})
 
 	else:
-		return render(request, 'home.html', {'ticker': "Enter a Ticker Symbol Above"})
+		return render(request, 'Stock_Lookup.html', {'ticker': "Enter a Ticker Symbol Above"})
 
 
 def about(request):
@@ -49,7 +49,7 @@ def add_stock(request):
 			except Exception as e:
 				api = "Error..."	
 
-		return render(request, 'add_stock.html', {'ticker': ticker, 'output': output})
+		return render(request, 'Stock_Portfolio.html', {'ticker': ticker, 'output': output})
 
 def delete(request, stock_id):
 	item = Stock.objects.get(pk=stock_id)
