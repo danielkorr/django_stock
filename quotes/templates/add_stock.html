@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
-
+{% load mathfilters %}
 {% block content %}
 
 
@@ -43,7 +43,7 @@
                 <td>${{ list_item.latestPrice | intcomma }}</td>
                 <td>${{ list_item.previousClose | intcomma }}</td>
                 <td>${{ list_item.marketCap | intcomma }}</td>
-                <td>{{ list_item.ytdChange}}  </td>
+                <td>{{ list_item.ytdChange | mul:100 | floatformat:1 }}%  </td>
                 <td>${{ list_item.week52High | intcomma }}</td>
                 <td>${{ list_item.week52Low | intcomma }}</td>
             <tr>

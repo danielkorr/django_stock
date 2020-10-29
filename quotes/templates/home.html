@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
 {% load humanize %}
+{% load mathfilters %}
+
 
 {% block content %}
 
@@ -22,8 +23,8 @@
 		Price: ${{ api.latestPrice | intcomma }}<br/>
 		Previous Close: ${{ api.previousClose | intcomma }}<br/>
 		Market Cap: ${{	api.marketCap | intcomma }}<br/>
-		YTD Change: {{ api.ytdChange | intcomma }}<br/>
-		52Wk High: ${{ api.week52High | intcomma }}<br/>
+		YTD Change: {{ api.ytdChange | mul:100 | floatformat:1 }}%  <br/>
+		52Wk High: ${{ api.week52High | intcomma}}<br/>
 		52Wk Low: ${{ api.week52Low | intcomma }}<br/>
 
 

@@ -1,4 +1,3 @@
- 
 from django.shortcuts import render, redirect
 from .models import Stock
 from .forms import StockForm
@@ -20,12 +19,6 @@ def home(request):
 
 	else:
 		return render(request, 'home.html', {'ticker': "Enter a Ticker Symbol Above"})
-
-	
-
-
-
-
 
 
 def about(request):
@@ -68,4 +61,4 @@ def delete(request, stock_id):
 
 def delete_stock(request):
 	ticker = Stock.objects.all()
-	return render(request, 'delete_stock.html', {'ticker' : ticker})
+	return render(request, 'delete_stock.html', {'ticker': ticker})
